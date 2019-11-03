@@ -1,7 +1,10 @@
 package com.paypay.assignment;
 
 public final class ImmutableStack<T> implements Stack<T> {
-  private static final Stack<?> EMPTY_STACK = new EmptyStack<>();
+
+  @SuppressWarnings("rawtypes")
+  private static final Stack EMPTY_STACK = new EmptyStack<>();
+
   private final T head;
   private final Stack<T> tail;
   private final int size;
@@ -13,17 +16,17 @@ public final class ImmutableStack<T> implements Stack<T> {
   }
 
   @SuppressWarnings("unchecked")
-  public static final <T> Stack<T> emptyStack() {
+  public static <T> Stack<T> empty() {
     return (Stack<T>) EMPTY_STACK;
   }
 
   @Override
-  public int size() {
+  public final int size() {
     return size;
   }
 
   @Override
-  public boolean isEmpty() {
+  public final boolean isEmpty() {
     return size <= 0;
   }
 
@@ -44,7 +47,7 @@ public final class ImmutableStack<T> implements Stack<T> {
 
   @Override
   public final Stack<T> reverse() {
-    Stack<T> reversedStack = emptyStack();
+    Stack<T> reversedStack = empty();
     Stack<T> stack = this;
 
     while (!stack.isEmpty()) {
@@ -59,7 +62,7 @@ public final class ImmutableStack<T> implements Stack<T> {
    * 
    * @param <T>
    */
-  private static class EmptyStack<E> implements Stack<E> {
+  private static final class EmptyStack<E> implements Stack<E> {
 
     @Override
     public int size() {

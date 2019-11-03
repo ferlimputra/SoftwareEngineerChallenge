@@ -2,7 +2,7 @@ package com.paypay.assignment;
 
 public interface Queue<T> {
 
-  public Queue<T> enQueue(T t);
+  public Queue<T> enQueue(T element);
 
   /**
    * Removes the element at the beginning of the immutable queue, and returns the new queue.
@@ -14,4 +14,6 @@ public interface Queue<T> {
   public T head();
 
   public boolean isEmpty();
+
+  public int size();
 }
