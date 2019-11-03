@@ -34,7 +34,7 @@ public final class ImmutableQueue<T> implements Queue<T> {
     if (front.isEmpty()) {
       throw new UnsupportedOperationException("Queue is empty");
     }
-    return new ImmutableQueue<>(front.pop(), rear.isEmpty() ? rear : rear.pop());
+    return new ImmutableQueue<>(front.pop(), rear);
   }
 
   @Override

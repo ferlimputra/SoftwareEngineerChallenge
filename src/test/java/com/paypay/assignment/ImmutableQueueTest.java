@@ -84,6 +84,28 @@ public class ImmutableQueueTest {
     assertTrue(queue.isEmpty());
   }
 
+  @Test
+  public void enqueueDequeue_multipleElements_shouldReturnCorrectResults() {
+    // Given
+    Queue<String> queue = ImmutableQueue.empty();
+    String[] arr = {"1", "2", "3"};
+    String[] arr2 = {"4", "5", "6"};
+
+    // When
+    for (String element : arr) {
+      queue = queue.enQueue(element);
+    }
+    queue = queue.deQueue().deQueue();
+    for (String element : arr2) {
+      queue = queue.enQueue(element);
+    }
+
+    // Then
+    assertFalse(queue.isEmpty());
+    assertEquals(4, queue.size());
+    assertEquals("4", queue.deQueue().head());
+  }
+
   @Test(expected = UnsupportedOperationException.class)
   public void dequeue_emptyQueue_shouldThrowException() {
     // Given
